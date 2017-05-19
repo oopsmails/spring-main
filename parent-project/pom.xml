@@ -1,0 +1,432 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ziyang</groupId>
+	<artifactId>parent-project</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>java-core</module>
+	</modules>
+
+	<properties>
+		<org.eclipse.version>2.6.2</org.eclipse.version>
+		<org.springframework.version>4.2.4.RELEASE</org.springframework.version>
+		<org.springframework.data.version>1.7.0.RELEASE</org.springframework.data.version>
+		<org.springframework.ldap.version>2.3.1.RELEASE</org.springframework.ldap.version>
+		<org.aspectj.version>1.8.7</org.aspectj.version>
+		<sybase.jconn4.version>7.07</sybase.jconn4.version>
+		<logback.version>1.1.3</logback.version>
+		<slf4j.version>1.7.12</slf4j.version>
+		<junit.version>4.12</junit.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<findbugs.version>3.0.1</findbugs.version>
+		<catchexception.version>1.2.0</catchexception.version>
+		<krasa-jaxb-tools.version>1.5.2</krasa-jaxb-tools.version>
+		<java.version>1.8</java.version>
+		<jersey.version>2.22.2</jersey.version>
+		<testng.version>6.8.7</testng.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- inter project -->
+			<dependency>
+				<groupId>com.ziyang</groupId>
+				<artifactId>java-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- Spring Framework -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-commons</artifactId>
+				<version>${org.springframework.data.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-core</artifactId>
+				<version>${org.springframework.ldap.version}</version>
+			</dependency>
+
+			<!-- aopalliance with spring-aop -->
+			<!-- remove? -->
+			<dependency>
+				<groupId>aopalliance</groupId>
+				<artifactId>aopalliance</artifactId>
+				<version>1.0</version>
+			</dependency>
+
+			<!-- AspectJ -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${org.aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${org.aspectj.version}</version>
+			</dependency>
+
+			<!-- apache standard taglibs -->
+			<dependency>
+				<groupId>org.apache.taglibs</groupId>
+				<artifactId>taglibs-standard-spec</artifactId>
+				<version>1.2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.taglibs</groupId>
+				<artifactId>taglibs-standard-impl</artifactId>
+				<version>1.2.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>5.1.2.Final</version>
+			</dependency>
+			<!-- needed for validator -->
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<version>2.2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.el</artifactId>
+				<version>2.2.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<version>3.1.3.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml</groupId>
+				<artifactId>classmate</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<!-- JDBC connection pool for use in development -->
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-jdbc</artifactId>
+				<version>8.0.18</version>
+				<scope>test</scope>
+				<!-- should not be included in final assembly <scope>provided</scope> -->
+			</dependency>
+			<!-- DB: Sybase -->
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>${c3p0.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.sybase.jdbc4.jdbc</groupId>
+				<artifactId>jconn4</artifactId>
+				<version>${sybase.jconn4.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Util libs -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.3.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>2.8</version>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+
+			<!-- Test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>${testng.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.10.19</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-core</artifactId>
+				<version>1.3</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${org.springframework.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>2.4.1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>1.1.0.Final</version>
+			</dependency>
+
+			<!-- <dependency> <groupId>com.google.code.findbugs</groupId> <artifactId>annotations</artifactId> 
+				<version>${findbugs.version}</version> <scope>provided</scope> </dependency> -->
+			<dependency>
+				<groupId>com.google.code.findbugs</groupId>
+				<artifactId>jsr305</artifactId>
+				<version>${findbugs.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.catch-exception</groupId>
+				<artifactId>catch-exception</artifactId>
+				<version>${catchexception.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.7</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.ow2.asm</groupId>
+							<artifactId>asm</artifactId>
+							<version>5.0.3</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<formats>
+							<format>xml</format>
+						</formats>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>cobertura</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.4</version>
+					<configuration>
+						<providerImplementations>
+							<svn>javasvn</svn>
+						</providerImplementations>
+						<doCheck>false</doCheck>
+						<doUpdate>false</doUpdate>
+						<revisionOnScmFailure>unknown</revisionOnScmFailure>
+						<outputName>${project.artifactId}-build.properties</outputName>
+						<attach>true</attach>
+						<!--make it available for jar/war classpath resource -->
+						<addOutputDirectoryToResources>true</addOutputDirectoryToResources>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>com.google.code.maven-scm-provider-svnjava</groupId>
+							<artifactId>maven-scm-provider-svnjava</artifactId>
+							<version>2.1.1</version>
+						</dependency>
+						<dependency>
+							<groupId>org.tmatesoft.svnkit</groupId>
+							<artifactId>svnkit</artifactId>
+							<version>1.8.11</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<!-- http://stackoverflow.com/questions/15886209/maven-is-not-working-in-java-8-when-javadoc-tags-are-incomplete -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.3</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<configuration>
+								<additionalparam>-Xdoclint:none</additionalparam>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<tagBase>https://ziyang.com/SERVICES/TAGS</tagBase>
+					<scmCommentPrefix>JIRA-1${line.separator}[maven-release-plugin] </scmCommentPrefix>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<!-- profile for static code analysis tools -->
+			<id>analysis</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+						<version>${findbugs.version}</version>
+						<configuration>
+							<failOnError>false</failOnError>
+							<xmlOutput>true</xmlOutput>
+							<!-- Temp Workaround. Proper solution see http://gleclaire.github.io/findbugs-maven-plugin/examples/multi-module-config.html 
+								<excludeBugsFile>findbugs-exclude.xml</excludeBugsFile> -->
+							<omitVisitors>FindReturnRef</omitVisitors>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

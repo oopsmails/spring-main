@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/jms 
+    http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
+	http://www.springframework.org/schema/jee
+	http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+	<bean id="threadPoolTaskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="20" />
+		<property name="threadNamePrefix" value="springThreadPool-" />
+		<property name="WaitForTasksToCompleteOnShutdown" value="true" />
+	</bean>
+	
+	<bean id="taskObjConsumerManager" class="com.ziyang.producerconsumer.TaskObjConsumerManager">
+		<property name="taskObjConsumers">
+			<map>
+				<entry key="CONSUMER_STRING" value-ref="taskStringConsumer" />
+			</map>
+		</property>
+		
+		<property name="taskObjConsumerBeanRef">
+			<map>
+				<entry key="CONSUMER_STRING" value="taskStringConsumer" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="taskObjQueueManager" class="com.ziyang.producerconsumer.TaskObjQueueManager">
+	</bean>
+	
+	<bean id="taskStringConsumer" class="com.ziyang.producerconsumer.taskstring.TaskStringConsumer"
+		scope="prototype">
+	</bean>
+
+	<bean id="taskStringProducer" class="com.ziyang.producerconsumer.taskstring.TaskStringProducer">
+		<property name="taskObjQueueManager" ref="taskObjQueueManager" />
+	</bean>
+	
+	<bean id="taskObjQueueListener" class="com.ziyang.producerconsumer.TaskObjQueueListener">
+		<property name="threadPoolTaskExecutor" ref="threadPoolTaskExecutor" />
+		<property name="taskObjQueueManager" ref="taskObjQueueManager" />
+		<property name="taskObjConsumerManager" ref="taskObjConsumerManager" />
+	</bean>
+	
+	
+</beans>
