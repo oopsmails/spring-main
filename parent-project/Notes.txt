@@ -1,1 +1,148 @@
 private static final Logger logger = LoggerFactory.getLogger(FileUpdateMonitor.class);
+
+http://localhost:8080/web-order/
+
+http://localhost:8080/web-order-inventory/
+
+-----------------------------------------------
+
+
+--> put logback.xml in java-core, for all web-* logging configuration
+
+
+-----------------------------------------------
+--> new web maven module project, got error: 
+
+Could not resolve archetype org.apache.maven.archetypes:maven-archetype-webapp:1.0 from any of the configured repositories.
+Could not resolve artifact org.apache.maven.archetypes:maven-archetype-webapp:jar:1.0
+Failure to transfer org.apache.maven.archetypes:maven-archetype-webapp:jar:1.0 from https://repo.maven.apache.org/maven2 was cached in the local repository, 
+resolution will not be reattempted until the update interval of central has elapsed or updates are forced. 
+Original error: Could not transfer artifact org.apache.maven.archetypes:maven-archetype-webapp:jar:1.0 
+from/to central (https://repo.maven.apache.org/maven2): sun.security.validator.ValidatorException: PKIX path building failed: 
+
+
+Solution:
+
+https://stackoverflow.com/questions/25760961/cannot-create-maven-project-in-eclipse
+
+For me the solution was a bit simpler, I just had to clean the repository : 
+.m2/repository/org/apache/maven/archetypes
+
+----------------------------------------------
+
+--> Tomcat version 7.0 only supports J2EE 1.2, 1.3, 1.4, and Java EE 5 Web modules
+
+Solution
+In project, “.settings” folder, find this file “org.eclipse.wst.common.project.facet.core.xml“, change the version of facet="jst.web" to 2.4 or 2.5.
+
+File : org.eclipse.wst.common.project.facet.core.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <fixed facet="jst.java"/>
+  <fixed facet="jst.web"/>
+  <installed facet="jst.web" version="2.4"/>
+  <installed facet="jst.java" version="6.0"/>
+</faceted-project>
+Tomcat 7
+You need facet="jst.web" version="3.0" to deploy on Tomcat 7.
+
+
+--> NoClassDefFoundError: org/springframework/beans/factory/config/EmbeddedValueResolver
+
+1. <org.springframework.version>4.3.4.RELEASE</org.springframework.version>
+
+2.
+<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jms</artifactId>
+				<version>${org.springframework.jms.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-beans</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+
+--> 
+java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
+	...
+Caused by: java.lang.ClassNotFoundException: javax.servlet.jsp.jstl.core.Config
+	... 18 more
+By default, Tomcat container doesn’t contain any jstl library. To fix it, declares jstl.jar in your Maven pom.xml file.
+
+<dependency>
+<groupId>javax.servlet</groupId>
+<artifactId>jstl</artifactId>
+<version>1.2</version>
+  </dependency>
+remove <scope>provided</scope>
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------
+
+--> spring jms tutorial with ibm mq
+
+https://stackoverflow.com/questions/14523572/spring-jms-and-websphere-mq
+
+I just went through this myself. Start with the Spring Boot JMS Starter
+
+Add a bean providing a MQQueueConnectionFactory
+
+@Configuration
+@EnableJms
+public class MQConfiguration {
+    @Bean
+    public MQQueueConnectionFactory mqFactory()
+    {
+        MQQueueConnectionFactory    factory = null;
+        try {
+            factory     = new MQQueueConnectionFactory();
+            factory.setHostName("localhost");
+            factory.setPort(1414);
+            factory.setQueueManager("QM.LOCAL");
+            factory.setChannel("SYSTEM.DEF.SVRCONN");
+            factory.setTransportType(JMSC.MQJMS_TP_CLIENT_MQ_TCPIP);
+        }
+        catch (JMSException e) {
+            System.out.println(e);
+        }
+        return factory;
+    }
+}
+Remove the dependency on org.apache.activemq / activemq-broker to make sure activemq doesn't sneak its way in.
+
+Add dependencies on com.ibm.mqjms.jar, com.bim.mq.jmqi.jar, dhbcore.jar
+
+Run
+
+
+
+--------------------------------------------------------------------------------------
+
+--> Active MQ:
+
+C:\Software\apache-activemq-5.14.5>bin\activemq start
+http://localhost:8161/admin/ with credentials admin/admin.
+
+--> Spring jms activemq example
+http://websystique.com/springmvc/spring-4-mvc-jms-activemq-annotation-based-example/#
+
+Note : Messaging Configuration for Inventory Application is exactly same as this one, with queue’s being flipped: Order will be received on order-queue and response will be sent to order-response-queue.
+
+
+
+
+
+
+
+
+
