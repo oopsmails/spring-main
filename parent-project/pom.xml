@@ -229,6 +229,7 @@
 				<scope>test</scope>
 				<!-- should not be included in final assembly <scope>provided</scope> -->
 			</dependency>
+			
 			<!-- DB: Sybase -->
 			<dependency>
 				<groupId>c3p0</groupId>

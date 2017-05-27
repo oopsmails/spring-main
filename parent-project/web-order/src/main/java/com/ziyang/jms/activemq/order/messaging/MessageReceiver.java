@@ -27,10 +27,10 @@ public class MessageReceiver {
 	public void receiveMessage(final Message<InventoryResponse> message) throws JMSException {
 		LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		MessageHeaders headers =  message.getHeaders();
-		LOG.info("Application : headers received : {}", headers);
+		LOG.info("Application (web-order) : headers received : {}", headers);
 		
 		InventoryResponse response = message.getPayload();
-		LOG.info("Application : response received : {}",response);
+		LOG.info("Application (web-order) : response received : {}",response);
 		
 		orderService.updateOrder(response);	
 		LOG.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++");

@@ -18,7 +18,7 @@ public class MessagingConfiguration {
 	public ActiveMQConnectionFactory connectionFactory(){
 		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
 		connectionFactory.setBrokerURL(DEFAULT_BROKER_URL);
-		connectionFactory.setTrustedPackages(Arrays.asList("com.websystique.springmvc"));
+		connectionFactory.setTrustedPackages(Arrays.asList("com.ziyang.jms.activemq"));
 		return connectionFactory;
 	}
 	

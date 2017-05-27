@@ -26,10 +26,10 @@ public class MessageReceiver {
 	public void receiveMessage(final Message<Order> message) throws JMSException {
 		LOG.info("----------------------------------------------------");
 		MessageHeaders headers =  message.getHeaders();
-		LOG.info("Application : headers received : {}", headers);
+		LOG.info("Application (web-order-inventory) : headers received : {}", headers);
 		
 		Order order = message.getPayload();
-		LOG.info("Application : product : {}",order);	
+		LOG.info("Application (web-order-inventory) : product : {}",order);	
 
 		orderInventoryService.processOrder(order);
 		LOG.info("----------------------------------------------------");
