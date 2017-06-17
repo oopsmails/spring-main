@@ -229,7 +229,7 @@
 				<scope>test</scope>
 				<!-- should not be included in final assembly <scope>provided</scope> -->
 			</dependency>
-			
+
 			<!-- DB: Sybase -->
 			<dependency>
 				<groupId>c3p0</groupId>
@@ -249,6 +249,13 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>3.3.2</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.10</version>
 			</dependency>
 
 			<dependency>
