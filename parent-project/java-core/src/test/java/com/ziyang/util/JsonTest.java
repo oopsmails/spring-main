@@ -14,9 +14,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziyang.entity.Address;
 import com.ziyang.entity.Client;
+import com.ziyang.entity.Views;
 
 /**
- * Thanks, https://www.mkyong.com/java/jackson-2-convert-java-object-to-from-json/
+ * Thanks, https://www.oopsmails.com/java/jackson-2-convert-java-object-to-from-json/
  * 
  * Differences from Jackson 1.x Most of the APIs still maintains the same method
  * name and signature, just the packaging is different.
@@ -102,6 +103,40 @@ public class JsonTest {
 			//Pretty print
 			String prettyClient1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(client);
 			System.out.println(prettyClient1);
+
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testJsonView() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+
+		Client client = createDummyObject();
+
+		try {
+
+			// Salary will be hidden
+			System.out.println("Normal View");
+			String normalView = mapper.writerWithView(Views.Normal.class).writeValueAsString(client);
+			System.out.println(normalView);
+
+			String jsonInString = "{\"name\":\"oopsmails\",\"age\":33,\"position\":\"Developer\",\"salary\":1000,\"skills\":[\"java\",\"python\"]}";
+			Client normalStaff = mapper.readerWithView(Views.Normal.class).forType(Client.class).readValue(jsonInString);
+			System.out.println(normalStaff);
+
+			// Display everything
+			System.out.println("\nManager View");
+			String managerView = mapper.writerWithView(Views.Manager.class).writeValueAsString(client);
+			System.out.println(managerView);
+
+			Client managerStaff = mapper.readerWithView(Views.Manager.class).forType(Client.class).readValue(jsonInString);
+			System.out.println(managerStaff);
 
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();

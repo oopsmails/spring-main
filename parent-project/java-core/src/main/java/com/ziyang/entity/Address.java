@@ -1,27 +1,18 @@
 package com.ziyang.entity;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 public class Address {
-//	@JsonView(Views.Normal.class)
 	private String streetNumber;
 
-//	@JsonView(Views.Normal.class)
 	private String streetName;
 
-//	@JsonView(Views.Normal.class)
 	private String streetDirection;
 
-//	@JsonView(Views.Normal.class)
 	private String province;
 
-//	@JsonView(Views.Normal.class)
 	private String country;
 
-//	@JsonView(Views.Normal.class)
 	private String city;
 
-//	@JsonView(Views.Normal.class)
 	private String addressType;
 
 	@Override

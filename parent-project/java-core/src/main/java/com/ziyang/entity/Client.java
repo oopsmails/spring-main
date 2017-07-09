@@ -5,23 +5,30 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+/**
+ * @JsonView, useful feature, it lets you control what fields to display.
+ * 
+ * 
+ * @author liu
+ *
+ */
 public class Client {
-//	@JsonView(Views.Normal.class)
+	@JsonView(Views.Normal.class)
 	private String name;
 
-//	@JsonView(Views.Normal.class)
+	@JsonView(Views.Normal.class)
 	private int age;
 
-//	@JsonView(Views.Normal.class)
+	@JsonView(Views.Normal.class)
 	private String position;
 
-//	@JsonView(Views.Manager.class)
+	@JsonView(Views.Manager.class)
 	private BigDecimal salary;
 
-//	@JsonView(Views.Normal.class)
+	@JsonView(Views.Normal.class)
 	private List<String> skills;
 	
-//	@JsonView(Views.Normal.class)
+	@JsonView(Views.Normal.class)
 	private List<Address> addresses;
 
 	public List<Address> getAddresses() {
