@@ -11,7 +11,7 @@ import com.ziyang.mapper.DbResultSetRowMapper.CurrentGroupHolder;
 
 /**
  * A custom {@link RowMapperResultSetExtractor} used to support grouping
- * {@link KycRowMapper}
+ * {@link DbResultSetRowMapper}
  * 
  */
 public class DbResultSetRowMapperExtractor<T> extends RowMapperResultSetExtractor<T> {

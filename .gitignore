@@ -23,4 +23,7 @@ parent-project/java-core/.project
 
 .recommenders/
 
+.idea
+*.iml
+
 
