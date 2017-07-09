@@ -3,15 +3,18 @@ package com.ziyang.producerconsumer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import com.ziyang.logging.AnalysisLogging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ziyang.producerconsumer.TaskObjConsumerIntf.TaskObjType;
 
+@AnalysisLogging
 public class TaskObjQueueManager {
 	private static final Logger logger = LoggerFactory.getLogger(TaskObjQueueManager.class);
 	private BlockingQueue<TaskObj> sharedBlockingQueue = new LinkedBlockingQueue<TaskObj>();
 
+	@AnalysisLogging
 	public boolean addItem(TaskObj t) throws InterruptedException {
 		if (t == null) {
 			logger.error("Error when sending TaskObj to Queue, taskObj is null!");

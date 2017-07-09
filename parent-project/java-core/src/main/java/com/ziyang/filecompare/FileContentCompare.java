@@ -18,7 +18,7 @@ public class FileContentCompare {
 	public static void main(String[] args) throws Exception {
 		try {
 			String filePath1 = "C:/Documents and Settings/20131106/";
-//			String filePath2 = "c:/work/tradeRecon/data/";
+//			String filePath2 = "c:/work/abc/data/";
 			String filePath2 = filePath1;
 			String fileName1 = filePath1 + "abc.green.dat";
 //			String fileName2 = filePath2 + "abc.txt";
