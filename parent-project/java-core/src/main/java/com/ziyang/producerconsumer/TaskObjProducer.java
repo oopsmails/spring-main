@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Deprecated
-public abstract class TaskObjProducer implements TaskObjProducerIntf {
+public abstract class TaskObjProducer implements TaskObjProducerIntf<TaskObj> {
 	private static final Logger logger = LoggerFactory.getLogger(TaskObjProducer.class);
 	private TaskObjQueueManager taskObjQueueManager;
 
