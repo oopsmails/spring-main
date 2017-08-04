@@ -10,6 +10,7 @@
 		<module>java-core</module>
 		<module>web-order</module>
 		<module>web-order-inventory</module>
+		<module>web-spring-rest</module>
 	</modules>
 
 	<properties>
@@ -41,6 +42,12 @@
 			<dependency>
 				<groupId>com.ziyang</groupId>
 				<artifactId>java-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ziyang</groupId>
+				<artifactId>java-core</artifactId>
+				<type>test-jar</type>
 				<version>${project.version}</version>
 			</dependency>
 
