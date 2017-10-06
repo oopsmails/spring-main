@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.schemas.oopsmails.com/request"
+           xmlns:ttt="http://www.schemas.oopsmails.com/request"
+           elementFormDefault="qualified">
+
+    <xs:element name="homesView">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="homes" type="ttt:homes" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="homes">
+        <xs:sequence>
+            <xs:element name="home" type="ttt:home" minOccurs="1" maxOccurs="100"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="home">
+        <xs:sequence>
+            <xs:element name="title" type="ttt:langValue" minOccurs="0" maxOccurs="2"/>
+            <xs:element name="photo" type="ttt:photo" minOccurs="0" maxOccurs="2"/>
+            <xs:element name="type" type="ttt:homeType" minOccurs="1" maxOccurs="1" default="semi"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="photo">
+        <xs:sequence>
+            <xs:element name="link" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="cssClass" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="width" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="height" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="verticalPosition" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="horizontalPosition" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="lang" type="ttt:language"/>
+    </xs:complexType>
+
+
+    <xs:simpleType name="stringBasedType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:complexType name="langValue">
+        <xs:simpleContent>
+            <xs:extension base="ttt:stringBasedType">
+                <xs:attribute name="lang" type="ttt:language" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+
+    <xs:simpleType name="homeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="detach"/>
+            <xs:enumeration value="semi"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="language">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="en"/>
+            <xs:enumeration value="fr"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
