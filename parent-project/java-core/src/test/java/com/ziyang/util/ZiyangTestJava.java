@@ -41,7 +41,7 @@ public class ZiyangTestJava {
 
 //	@Test
 //	@Ignore
-//	public void tdRandomNumberTest() throws Exception {
+//	public void randomNumberTest() throws Exception {
 //		final long TEST_SIZE = 10000000L;
 //		double leastSize = TEST_SIZE * 0.95;
 //		ConcurrentHashMap<String, Long> concurrentHashMap = new ConcurrentHashMap<>(1000, 0.8f);
